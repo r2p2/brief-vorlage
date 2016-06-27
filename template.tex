@@ -1,0 +1,74 @@
+\documentclass
+  [fontsize=12pt
+  ,paper=a4
+  ,enlargefirstpage=on
+  ,pagenumber=headright
+  ,headsepline=on
+  ,parskip=half
+  ,fromalign=right
+  ,fromphone=on
+  ,fromrule=on
+  ,fromfax=off
+  ,fromemail=on
+  ,fromurl=off
+  ,fromlogo=off
+  ,addrfield=on
+  ,backaddress=on
+  ,subject=beforeopening
+  ,locfield=narrow
+  ,foldmarks=on
+  ,numericaldate=off
+  ,refline=narrow
+  ,subject=titled
+  ,draft=off
+]{scrlttr2}
+
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{ae}
+\usepackage{lipsum}
+\usepackage{microtype}
+
+\setkomafont{fromname}{\sffamily \LARGE}
+\setkomafont{fromaddress}{\sffamily}
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\bfseries}
+\setkomafont{backaddress}{\mdseries}
+
+\usepackage{libertine}
+
+\begin{document}
+
+\include{from}
+\include{letter}
+
+\setkomavar{backaddressseparator}{\ .\ }
+
+\firsthead{} % Ohne separaten Absender.
+
+\setkomavar{date}{\Date}
+
+\renewcommand{\enclname}{Anlage(n)}
+\setkomavar{enclseparator}{: }
+
+\pagestyle{plain}
+
+\begin{letter}{\EmpName\\\EmpStrasse\\\EmpPlz\ \EmpOrt}
+
+
+\setkomavar{subject}{\Subject}
+\opening{\Opening}
+
+\Content
+
+\closing{\Closing}
+
+\Ps
+\Anlagen
+\Cc
+
+\end{letter}
+
+\end{document}
