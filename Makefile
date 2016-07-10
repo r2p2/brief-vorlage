@@ -5,4 +5,4 @@ all: template.tex letter.tex from.tex
 	mv template.pdf letter.pdf
 
 clean:
-	rm *.aux *.log *.pdf || true
+	rm -f from.aux letter.aux letter.pdf template.aux template.log

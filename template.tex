@@ -30,6 +30,8 @@
 \usepackage{ae}
 \usepackage{lipsum}
 \usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{wrapfig}
 
 \setkomafont{fromname}{\sffamily \LARGE}
 \setkomafont{fromaddress}{\sffamily}
@@ -55,7 +57,13 @@
 
 \pagestyle{plain}
 
-\begin{letter}{\EmpName\\\EmpStrasse\\\EmpPlz\ \EmpOrt}
+\begin{letter}{
+	\begin{wrapfigure}{r}{4cm}
+		\vspace{-1.2cm}
+		\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{stamp}
+	\end{wrapfigure}
+	\EmpName\\\EmpStrasse\\\EmpPlz\ \EmpOrt
+}
 
 
 \setkomavar{subject}{\Subject}
