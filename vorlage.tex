@@ -23,9 +23,6 @@
   ,draft=off
 ]{scrlttr2}
 
-\usepackage{ngerman}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{url}
 \usepackage{ae}
 \usepackage{lipsum}
@@ -33,24 +30,36 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage[babelshorthands=true]{german}
+
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Biolinum O}
+
 \setkomafont{fromname}{\sffamily \LARGE}
 \setkomafont{fromaddress}{\sffamily}
 \setkomafont{pagenumber}{\sffamily}
 \setkomafont{subject}{\bfseries}
 \setkomafont{backaddress}{\mdseries}
 
-\usepackage{libertine}
-
 \begin{document}
-
-\include{from}
-\include{letter}
 
 \setkomavar{backaddressseparator}{\ .\ }
 
 \firsthead{} % Ohne separaten Absender.
 
-\setkomavar{date}{\Date}
+\setkomavar{place}{$VonOrt$}
+\setkomavar{date}{$Datum$}
+\setkomavar{signature}{($VonName$)}
+\setkomavar{fromname}{$VonName$}
+\setkomavar{fromaddress}{$VonStraße$\\$VonPlz$~$VonOrt$}
+\setkomavar{subject}{$Betreff$}
+$if(Sendungsart)$
+\setkomavar{specialmail}{$Sendungsart$}
+$endif$
+
 
 \renewcommand{\enclname}{Anlage(n)}
 \setkomavar{enclseparator}{: }
@@ -58,24 +67,40 @@
 \pagestyle{plain}
 
 \begin{letter}{
+$if(Briefmarke)$
 	\begin{wrapfigure}{r}{4cm}
 		\vspace{-1.2cm}
-		\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{stamp}
+		\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{$Briefmarke$}
 	\end{wrapfigure}
-	\EmpName\\\EmpStrasse\\\EmpPlz\ \EmpOrt
+$endif$
+	$AnName$\\$AnStraße$\\$AnPlz$\ $AnSOrt$
 }
 
+\opening{$Einleitung$}
 
-\setkomavar{subject}{\Subject}
-\opening{\Opening}
+$body$
 
-\Content
+\closing{$Schluss$}
 
-\closing{\Closing}
+$if(PS)$
+\ps{PS: $PS$}
+$endif$
 
-\Ps
-\Anlagen
-\Cc
+$if(Anlagen)$
+\encl{
+$for(Anlagen)$
+$Anlagen$$sep$\\
+$endfor$
+}
+$endif$
+
+$if(CC)$
+\cc{
+$for(CC)$
+$CC$$sep$\\
+$endfor$
+}
+$endif$
 
 \end{letter}
 

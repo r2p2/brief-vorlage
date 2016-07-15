@@ -1,8 +1,5 @@
-all: template.tex letter.tex from.tex
-	pdflatex $<
-	pdflatex $<
-	pdflatex $<
-	mv template.pdf letter.pdf
+all: absender.md brief.md vorlage.tex
+	pandoc absender.md brief.md --template=vorlage.tex --latex-engine=xelatex -o brief.pdf
 
 clean:
-	rm -f from.aux letter.aux letter.pdf template.aux template.log
+	rm -f brief.pdf
