@@ -1,7 +1,7 @@
 ---
 AnName:     Herr Empfangsdame
 AnStraße:   Eingangsstraße 122c
-AnPlz:      12345
+AnPlz:      '012345'
 AnOrt:      Empfangsort
 
 Datum:      2016-07-02
