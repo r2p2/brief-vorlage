@@ -6,6 +6,8 @@
 ,firsthead=$Absenderkopf$
 ,fromalign=right
 ,fromrule=aftername
+,firstfoot=on
+,footsepline=on
 ,symbolicnames=$Symbole$
 ,fromphone=$Telefon$
 ,frommobilephone=$Handy$
@@ -58,7 +60,7 @@ $endif$
 \makeatother
 
 \setkomavar{backaddressseparator}{~\textbullet~}
-\renewcommand{\pagemark}{{\usekomafont{pagenumber}{\thepage~von~\pageref{LastPage}}}}
+\renewcommand{\pagemark}{{\usekomafont{pagenumber}{Seite \thepage~von~\pageref{LastPage}}}}
 
 % ==== VARIABLES ===============================================================
 
