@@ -1,42 +1,49 @@
 \documentclass
-  [fontsize=12pt
-  ,paper=a4
-  ,enlargefirstpage=on
-  ,pagenumber=headright
-  ,headsepline=on
-  ,parskip=half
-  ,fromalign=right
-  ,fromphone=on
-  ,fromrule=on
-  ,fromfax=off
-  ,fromemail=on
-  ,fromurl=off
-  ,fromlogo=off
-  ,addrfield=on
-  ,backaddress=on
-  ,subject=beforeopening
-  ,locfield=narrow
-  ,foldmarks=on
-  ,numericaldate=off
-  ,refline=narrow
-  ,subject=titled
-  ,draft=off
+[version=last
+,a4paper
+,foldmarks=on
+,enlargefirstpage=on
+,firsthead=$Absenderkopf$
+,fromalign=right
+,fromrule=aftername
+,symbolicnames=$Symbole$
+,fromphone=$Telefon$
+,frommobilephone=$Handy$
+,fromemail=$EMail$
+,fromurl=$Url$
+,pagenumber=right
+,parskip=half
 ]{scrlttr2}
+\recalctypearea
 
-\usepackage{url}
-\usepackage{ae}
-\usepackage{lipsum}
-\usepackage{microtype}
-\usepackage{graphicx}
-\usepackage{wrapfig}
-
+\usepackage[ngerman]{babel}
 \usepackage{fontspec}
-\usepackage{polyglossia}
-\setmainlanguage[babelshorthands=true]{german}
+\usepackage{microtype}
+\usepackage{wrapfig}
+\usepackage{lastpage}
+
+% ==== FONT CONFIGURATION ======================================================
 
 \defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
+
 \setmainfont{Linux Libertine O}
 \setsansfont{Linux Biolinum O}
+
+$if(Gentium)$
+\setmainfont
+[Path = fonts/gentiumbasic/
+,BoldFont = GenBasB.ttf
+,ItalicFont = GenBasI.ttf
+,BoldItalicFont = GenBasBI.ttf
+]{GenBasR.ttf}
+\setsansfont
+[Path = fonts/gentiumbasic/
+,BoldFont = GenBasB.ttf
+,ItalicFont = GenBasI.ttf
+,BoldItalicFont = GenBasBI.ttf
+]{GenBasR.ttf}
+$endif$
+
 
 \setkomafont{fromname}{\sffamily \LARGE}
 \setkomafont{fromaddress}{\sffamily}
@@ -44,36 +51,47 @@
 \setkomafont{subject}{\bfseries}
 \setkomafont{backaddress}{\mdseries}
 
-\begin{document}
+% ==== FORMAT ADJUSTMENTS ======================================================
 
-\setkomavar{backaddressseparator}{\ .\ }
+\makeatletter
+\@setplength{toaddrhpos}{26.2mm}
+\makeatother
 
-\firsthead{} % Ohne separaten Absender.
+\setkomavar{backaddressseparator}{~\textbullet~}
+\renewcommand{\pagemark}{{\usekomafont{pagenumber}{\thepage~von~\pageref{LastPage}}}}
+
+% ==== VARIABLES ===============================================================
 
 \setkomavar{place}{$VonOrt$}
 \setkomavar{date}{$Datum$}
 \setkomavar{signature}{($VonName$)}
 \setkomavar{fromname}{$VonName$}
 \setkomavar{fromaddress}{$VonStraße$\\$VonPlz$~$VonOrt$}
+\setkomavar{fromphone}{$VonTelefon$}
+\setkomavar{frommobilephone}{$VonHandy$}
+\setkomavar{fromemail}{$VonEMail$}
+\setkomavar{fromurl}{$VonUrl$}
+
 \setkomavar{subject}{$Betreff$}
-$if(Sendungsart)$
 \setkomavar{specialmail}{$Sendungsart$}
-$endif$
 
+\setkomavar{yourref}{$IhrZeichen$}
+\setkomavar{yourmail}{$IhrSchreiben$}
+\setkomavar{myref}{$UnserZeichen$}
+\setkomavar{customer}{$Kundennummer$}
+\setkomavar{invoice}{$Rechnungsnummer$}
 
-\renewcommand{\enclname}{Anlage(n)}
-\setkomavar{enclseparator}{: }
+% ==== LETTER ==================================================================
 
-\pagestyle{plain}
-
-\begin{letter}{
+\begin{document}
+\begin{letter}[fontsize=$Groesse$]{
 $if(Briefmarke)$
-	\begin{wrapfigure}{r}{4cm}
+	\begin{wrapfigure}{r}{2.5cm}
 		\vspace{-1.2cm}
 		\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{$Briefmarke$}
 	\end{wrapfigure}
 $endif$
-	$AnName$\\$AnStraße$\\$AnPlz$\ $AnSOrt$
+	$AnName$\\$AnStraße$\\$AnPlz$\ $AnOrt$
 }
 
 \opening{$Einleitung$}
@@ -103,5 +121,5 @@ $endfor$
 $endif$
 
 \end{letter}
-
 \end{document}
+
