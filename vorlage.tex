@@ -63,6 +63,10 @@ $endif$
 \@addtoplength[-]{firstheadwidth}{12.5mm}
 \makeatother
 
+\makeatletter
+  \let\specialmail@format\bf
+\makeatother
+
 \setkomavar{backaddressseparator}{~\textbullet~}
 \renewcommand{\pagemark}{{\usekomafont{pagenumber}{Seite \thepage~von~\pageref{LastPage}}}}
 
