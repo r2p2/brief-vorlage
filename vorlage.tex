@@ -91,13 +91,38 @@ $endif$
 
 \begin{document}
 \begin{letter}[fontsize=$Groesse$]{
-$if(Briefmarke)$
-	\begin{wrapfigure}{r}{2.5cm}
-		\vspace{-1.2cm}
-		\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{$Briefmarke$}
-	\end{wrapfigure}
-$endif$
-	$AnName$\\$AnStraße$\\$AnPlz$\ $AnOrt$
+	$if(Briefmarke)$
+		\begin{wrapfigure}{r}{2.5cm}
+			\vspace{-1.2cm}
+			\includegraphics[trim=25mm 260mm 151mm 25mm, clip]{$Briefmarke$}
+		\end{wrapfigure}
+	$endif$
+
+	$if(AnName)$
+		$AnName$
+	$else$
+		~
+	$endif$
+	\\
+	$if(AnStraße)$
+		$AnStraße$
+	$else$
+		~
+	$endif$
+	\\
+	$if(AnPlz)$
+		$if(AnOrt)$
+			$AnPlz$\ $AnOrt$
+		$else$
+			$AnPlz$
+		$endif$
+	$else$
+		$if(AnOrt)$
+			$AnOrt$
+		$else$
+			~
+		$endif$
+	$endif$
 }
 
 \opening{$Einleitung$}
