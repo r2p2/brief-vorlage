@@ -47,6 +47,16 @@ Wenn keine digitale Briefmarke verwendet wird, reicht es den Eintrag
 
 ## Schrift
 
-Aktuell werden die zwei Schriftarten *Gentium* und *Libertine* unterstützt.
-Um zwischen beiden zu wechseln, ist der Parameter `Gentium: true` jeweils auf
-`true` (*Gentium*) bzw. auf `false` (*Libertine*) zu setzen.
+Aktuell werden die drei Schriftarten *Gentium*, *Vollkorn* und *Libertine*
+unterstützt. Um zwischen beiden zu wechseln, ist der Parameter `Gentium` oder
+`Vollkorn` jeweils auf `true` bzw. `false` zu setzen. Der letzte Eintrag mit
+dem Wert `true` überschriebt den vorangegangenen. Sind beide Werte `false`,
+wird die Schriftart *Libertine* verwendet.
+
+# Powered By
+
+Um den Brief zu generieren kommen folgende externe Programme und Dateien zum
+Einsatz.
+
+- [Pandoc](https://pandoc.org) und [XeTeX](http://xetex.sourceforge.net/)
+- Typeface: »Vollkorn« by Friedrich Althausen, [vollkorn-typeface.com](vollkorn-typeface.com)

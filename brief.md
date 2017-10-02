@@ -40,8 +40,9 @@ Url:          'on'
 
 ### SCHRIFT ####################################################################
 
-Groesse: '12pt'
-Gentium: true
+Groesse: '13pt'
+Gentium: false
+Vollkorn: true
 
 ---
 
